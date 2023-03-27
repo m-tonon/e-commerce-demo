@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './pages/home/home.component';
 import { HeroComponent } from './pages/home/components/hero/hero.component';
+import { CollectionsComponent } from './pages/home/components/collections/collections.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
@@ -14,6 +16,8 @@ import { HeroComponent } from './pages/home/components/hero/hero.component';
     HeaderComponent,
     HomeComponent,
     HeroComponent,
+    CollectionsComponent,
+    FooterComponent,
 
   ],
   imports: [
