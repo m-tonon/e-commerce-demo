@@ -1,35 +1,37 @@
+<!-- Floating Menu Start -->
+<nav class="w-full top-0 left-0 h-screen fixed z-50 {{ isSideBarShowing?'flex' : 'hidden' }}">
+  <div class="bg-white w-full md:max-w-sm shadow-2xl">
+    <div class="flex justify-end px-14 py-7">
+      <svg (click)="this.closeSideBar()" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </div>
+    <div class="mt-6">
+      <app-menu></app-menu>
+    </div>
+  </div>
+  <div (click)="this.closeSideBar()" class="bg-gray-900 hidden sm:block sm:w-full opacity-60">
+  </div>
+</nav>
+<!-- Floating Menu End -->
+
 <div class="container">
   <div class="md:flex md:flex-row md:justify-between text-center">
-    <div class="flex flex-row justify-center">
-      <div
-        class="bg-gradient-to-r from-purple-400 to-red-400 w-10 h-10 rounded-lg"
-      ></div>
-      <h1 class="text-3xl text-gray-600 ml-2">Logo</h1>
-    </div>
-    <div class="mt-2">
-      <a href="#" class="text-gray-600 hover:text-purple-600 p-4">Home</a>
-      <a href="#" class="text-gray-600 hover:text-purple-600 p-4">Shop</a>
-      <a href="#" class="text-gray-600 hover:text-purple-600 p-4">Blog</a>
-      <a href="#" class="text-gray-600 hover:text-purple-600 p-4">Contact</a>
-      <a
-        href="#"
-        class="bg-purple-600 text-gray-50 hover:bg-purple-700 sm:px-5 sm:p-3 p-1 px-2 rounded-full whitespace-nowrap"
-        ><svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="inline-block w-6 h-6"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
-          />
+    <div class="flex justify-between items-center">
+      <div class="flex flex-row justify-center">
+        <div
+          class="bg-gradient-to-r from-purple-400 to-red-400 w-10 h-10 rounded-lg"
+        ></div>
+        <h1 class="text-3xl text-gray-600 ml-2">Logo</h1>
+      </div>
+      <span class="text-3xl cursor-pointer mx-2 md:hidden block">
+        <svg (click)="this.openSideBar()" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
         </svg>
-        Cart (0)</a
-      >
+      </span>
+    </div>
+    <div class="mt-2 hidden md:flex">
+      <app-menu></app-menu>
     </div>
   </div>
 </div>
