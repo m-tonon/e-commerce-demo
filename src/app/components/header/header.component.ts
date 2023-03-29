@@ -6,12 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  isSideBarShowing = true;
+  isSideBarShowing = false;
 
   openSideBar() {
     this.isSideBarShowing = true;
   }
-
+ 
   closeSideBar(){
     this.isSideBarShowing = false;
   }

@@ -9,6 +9,7 @@ import { HeroComponent } from './pages/home/components/hero/hero.component';
 import { CollectionsComponent } from './pages/home/components/collections/collections.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MenuComponent } from './shared/menu/menu.component';
+import { ShopComponent } from './pages/shop/shop.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { MenuComponent } from './shared/menu/menu.component';
     CollectionsComponent,
     FooterComponent,
     MenuComponent,
+    ShopComponent,
 
   ],
   imports: [
