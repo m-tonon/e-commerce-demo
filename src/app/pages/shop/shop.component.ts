@@ -7,5 +7,13 @@ import { Component } from '@angular/core';
   ]
 })
 export class ShopComponent {
+  isNavBarOpen = false;
 
+  openNavBar() {
+    this.isNavBarOpen = true;
+  }
+
+  closeNavBar() {
+    this.isNavBarOpen = false;
+  }
 }
