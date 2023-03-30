@@ -10,6 +10,7 @@ import { CollectionsComponent } from './pages/home/components/collections/collec
 import { FooterComponent } from './components/footer/footer.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { ShopComponent } from './pages/shop/shop.component';
+import { CartComponent } from './pages/cart/cart.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { ShopComponent } from './pages/shop/shop.component';
     FooterComponent,
     MenuComponent,
     ShopComponent,
+    CartComponent,
 
   ],
   imports: [
