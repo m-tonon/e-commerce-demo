@@ -11,6 +11,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { ShopComponent } from './pages/shop/shop.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { ProductBoxComponent } from './pages/shop/product-box/product-box.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { CartComponent } from './pages/cart/cart.component';
     MenuComponent,
     ShopComponent,
     CartComponent,
+    ProductBoxComponent,
 
   ],
   imports: [
