@@ -57,7 +57,9 @@
   <!-- Product Box Start -->
   <div class="overflow-none">
     <div class="grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10" >
-      <app-product-box></app-product-box>
+      <app-product-box
+      (addToCart)="onAddToCart($event)"
+      ></app-product-box>
     </div>
   </div>
   <!-- Product Box Ends -->

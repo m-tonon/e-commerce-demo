@@ -1,22 +1,22 @@
 <!-- Product Card -->
-<div class="shadow-lg rounded-lg">
+<div class="shadow-lg rounded-lg" >
   <a href="#">
     <img
-      src="../../../../../assets/images/products/women/product4.jpg"
+      src="{{product?.image}}"
       class="rounded-tl-lg rounded-tr-lg"
     />
   </a>
   <div class="p-5 mx-auto">
     <h3 class="font-bold text-center text-lg truncate hover:whitespace-normal">
-      <a href="#">Women's Skirt</a>
+      <a href="#">{{product?.title}}</a>
     </h3>
-    <p class="text-center text-xs">Category</p>
-    <p class="text-right text-lg">{{ "99.99" | currency }}</p>
+    <p class="text-center text-xs">{{product?.category}}</p>
+    <p class="text-right text-lg">{{ product?.price | currency }}</p>
 
     <!-- Card Buttons Start -->
     <div class="flex flex-col xl:flex-row justify-between my-2">
-      <a
-        href="#"
+      <button
+        (click)="onAddToCart()"
         class="bg-gradient-to-r from-red-600 to-pink-500 rounded-full mr-1 py-2 px-3 text-gray-50 flex flex-row hover:from-pink-600 hover:to-pink-600 text-sm whitespace-nowrap justify-center my-2"
       >
         <svg
@@ -34,8 +34,8 @@
           />
         </svg>
         Add to Cart
-      </a>
-      <a
+      </button>
+      <button
         href="#"
         class="bg-purple-600 rounded-full ml-1 py-2 px-3 text-gray-50 flex flex-row hover:bg-purple-700 text-sm whitespace-nowrap justify-center my-2"
       >
@@ -54,7 +54,7 @@
           />
         </svg>
         View Details
-      </a>
+      </button>
     </div>
     <!-- Card Buttons End -->
   </div>
