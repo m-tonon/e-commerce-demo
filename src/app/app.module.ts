@@ -12,6 +12,8 @@ import { MenuComponent } from './shared/menu/menu.component';
 import { ShopComponent } from './pages/shop/shop.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { ProductBoxComponent } from './pages/shop/product-box/product-box.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -26,11 +28,12 @@ import { ProductBoxComponent } from './pages/shop/product-box/product-box.compon
     ShopComponent,
     CartComponent,
     ProductBoxComponent,
-
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
