@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-menu',
@@ -11,5 +11,9 @@ export class MenuComponent {
 
   onCartMenu() {
     this.openedCartMenu = !this.openedCartMenu;
+  }
+
+  isMobile() {
+    return window.innerWidth < 768;
   }
 }
