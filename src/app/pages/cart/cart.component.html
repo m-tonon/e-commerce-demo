@@ -108,7 +108,7 @@
       </td>
       <td class="text-center flex flex-col justify-between items-center">
         <button
-          class="text-gray-600 md:bg-green-600 md:text-gray-50 md:hover:bg-rose-700 py-1 px-3 rounded-xl whitespace-nowrap w-fit m-2"
+          class="text-gray-600 md:bg-green-600 md:text-gray-50 md:hover:bg-green-700 py-1 px-3 rounded-xl whitespace-nowrap w-fit m-2"
         >
           Checkout
         </button>
@@ -202,6 +202,25 @@
         </div>
       </ng-container>
     </div>
+        <!-- Table Footer -->
+        <div class="flex justify-between">
+          <button
+            routerLink="/shop"
+            class="bg-purple-700 text-gray-50 px-3 rounded-xl whitespace-nowrap w-fit"
+          >
+            Continue shopping
+          </button>
+          <div>
+            <span class="font-bold mr-10">
+              {{ getTotal(cart.items) | currency }}
+            </span>
+            <button
+              class="text-gray-50 bg-green-700 px-3 rounded-xl whitespace-nowrap w-fit py-1"
+            >
+              Checkout
+            </button>
+          </div>
+      </div>
   </div>
 </div>
 

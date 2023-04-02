@@ -17,36 +17,42 @@
     >
   </li>
   <li class="md:mx-4 my-2 md:my-0">
-      <button
-        [hidden]="isMobile()"
-        (click)="onCartMenu()"
-        class="text-gray-600 md:bg-purple-600 md:text-gray-50 md:hover:bg-purple-700 px-3 p-1 rounded-full whitespace-nowrap md:hover:scale-110 ease-in duration-200 mb-"
+    <button
+      [hidden]="isMobile()"
+      (click)="onCartMenu()"
+      class="text-gray-600 md:bg-purple-600 md:text-gray-50 md:hover:bg-purple-700 px-3 p-1 rounded-full whitespace-nowrap md:hover:scale-110 ease-in duration-200 mb-"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="md:inline-block w-7 h-7 hidden"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="md:inline-block w-7 h-7 hidden"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
-          />
-        </svg>
-      </button>
-      <span
-        [hidden]="!itemsQuantity"
-        class="bg-white text-purple-800 absolute rounded-full px-2 h-fit right-1 bottom-5 shadow-lg font-semibold text-base"
-        >{{itemsQuantity}}</span>
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+        />
+      </svg>
+    </button>
+    <span
+      [hidden]="!itemsQuantity"
+      class="bg-white text-purple-800 absolute rounded-full px-2 h-fit right-1 bottom-5 shadow-lg font-semibold text-base"
+      >{{ itemsQuantity }}</span
+    >
   </li>
   <li [hidden]="!isMobile()">
     <a
       routerLink="cart"
       class="text-gray-600 hover:text-purple-600 p-4 lg:border-0"
-      >Cart <strong>({{itemsQuantity}})</strong></a>
+      >Cart
+      <span
+        [hidden]="!itemsQuantity"
+        class="bg-white text-purple-800 rounded-full px-2 h-fit right-1 bottom-5 shadow-lg font-semibold text-base"
+      >{{ itemsQuantity }}</span>
+    </a>
   </li>
 </ul>
 
@@ -59,16 +65,19 @@
     <div class="p-3 divide-y divide-solid">
       <div class="pb-3">
         <ul class="flex justify-between">
-          <li><span class="mr-16">{{itemsQuantity}} items</span></li>
+          <li>
+            <span class="mr-16">{{ itemsQuantity }} items</span>
+          </li>
           <li><a routerLink="cart">View Cart</a></li>
         </ul>
       </div>
       <div *ngIf="cart.items.length" class="py-3">
         <div
           *ngFor="let item of cart.items"
-          class="flex justify-between font-light mb-2">
-            {{ item.quantity }} x {{item.name}}
-            <span class="font-bold">{{ item.price| currency }}</span>
+          class="flex justify-between font-light mb-2"
+        >
+          {{ item.quantity }} x {{ item.name }}
+          <span class="font-bold">{{ item.price | currency }}</span>
         </div>
       </div>
       <div class="flex justify-between py-3 font-light">
@@ -79,7 +88,8 @@
       <div class="pt-3 flex justify-between">
         <button
           (click)="onClearCart()"
-          class="bg-rose-600 text-white rounded-full w-10 h-10">
+          class="bg-rose-600 text-white rounded-full w-10 h-10"
+        >
           <span class="flex justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -100,7 +110,7 @@
         <button
           routerLink="cart"
           (click)="onCartMenu()"
-          class="bg-purple-800 text-white rounded-full w-10 h-10"
+          class="bg-green-600 text-white rounded-full w-10 h-10"
         >
           <span class="flex justify-center">
             <svg
@@ -114,7 +124,7 @@
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+                d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
               />
             </svg>
           </span>
