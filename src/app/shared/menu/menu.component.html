@@ -16,8 +16,7 @@
       >Login</a
     >
   </li>
-  <li class="md:mx-4 my-2 md:my-0 ">
-    <div class="">
+  <li class="md:mx-4 my-2 md:my-0">
       <button
         [hidden]="isMobile()"
         (click)="onCartMenu()"
@@ -42,14 +41,12 @@
         [hidden]="!itemsQuantity"
         class="bg-white text-purple-800 absolute rounded-full px-2 h-fit right-1 bottom-5 shadow-lg font-semibold text-base"
         >{{itemsQuantity}}</span>
-    </div>
-
+  </li>
+  <li [hidden]="!isMobile()">
     <a
-      [hidden]="!isMobile()"
-      href="cart"
+      routerLink="cart"
       class="text-gray-600 hover:text-purple-600 p-4 lg:border-0"
-      >Cart <strong>(0)</strong></a
-    >
+      >Cart <strong>({{itemsQuantity}})</strong></a>
   </li>
 </ul>
 
