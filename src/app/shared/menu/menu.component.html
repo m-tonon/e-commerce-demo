@@ -7,7 +7,9 @@
     >
   </li>
   <li class="md:mx-4 my-2 md:my-0">
-    <a href="/shop" class="text-gray-600 hover:text-purple-600 p-4 lg:border-0"
+    <a
+      routerLink="/shop"
+      class="text-gray-600 hover:text-purple-600 p-4 lg:border-0"
       >Shop</a
     >
   </li>
@@ -46,13 +48,14 @@
   <li [hidden]="!isMobile()">
     <a
       routerLink="cart"
+      (click)="onCartMenu()"
       class="text-gray-600 hover:text-purple-600 p-4 lg:border-0"
       >Cart
       <span
         [hidden]="!itemsQuantity"
         class="bg-white text-purple-800 rounded-full px-2 h-fit right-1 bottom-5 shadow-lg font-semibold text-base"
       >{{ itemsQuantity }}</span>
-    </a>
+  </a>
   </li>
 </ul>
 
