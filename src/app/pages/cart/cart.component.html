@@ -1,15 +1,32 @@
+<!-- Desktop Table -->
 <div class="max-w-7x1 mx-auto" *ngIf="cart.items.length">
-  <table class="table-auto w-full">
-    <thead>
+  <table class="md:table-auto w-full shadow-xl md:table hidden">
+    <thead class="bg-gray-100 border-b-2 border-gray-200 rounded-xl">
       <tr>
         <ng-container *ngFor="let column of displayedColumns">
-          <th class="text-left text-gray-600 w-[230px]">{{ column }}</th>
+          <th class="text-left text-gray-600 p-3">{{ column }}</th>
         </ng-container>
-        <th></th>
+        <th>
+          <button
+            (click)="onClearCart()"
+            class="text-gray-600 md:bg-rose-600 md:text-gray-50 md:hover:bg-rose-700 py-1 px-4 rounded-xl whitespace-nowrap w-fit font-normal"
+          >
+            Clear All
+          </button>
+        </th>
       </tr>
     </thead>
-    <tbody *ngFor="let item of dataSource">
-      <td><img class="w-[100px] my-5" src="{{ item.product }}" alt="" /></td>
+    <tbody
+      class="bg-gray-50 md:hover:bg-gray-100 md:hover:scale-105 ease-in-out duration-500"
+      *ngFor="let item of dataSource"
+    >
+      <td>
+        <img
+          class="w-[150px] my-5 rounded-lg"
+          src="{{ item.product }}"
+          alt=""
+        />
+      </td>
       <td>
         <span class="truncate max-w-xs">{{ item.name }}</span>
       </td>
@@ -17,36 +34,44 @@
       <td class="items-left">
         <div class="flex justify-start">
           <svg
+            (click)="onRemoveQuantity(item)"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            class="w-6 h-6 mr-5"
-          >
-            <path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6" />
-          </svg>
-          <span>{{ item.quantity }}</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="w-6 h-6 ml-5"
+            class="w-5 h-5 mr-5 md:hover:bg-purple-800 md:hover:text-white rounded-full"
           >
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
-              d="M12 6v12m6-6H6"
+              d="M19.5 8.25l-7.5 7.5-7.5-7.5"
             />
           </svg>
-
+          <span>{{ item.quantity }}</span>
+          <svg
+            (click)="onAddQuantity(item)"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-5 h-5 ml-5 md:hover:bg-purple-800 md:hover:text-white rounded-full"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M4.5 15.75l7.5-7.5 7.5 7.5"
+            />
+          </svg>
         </div>
       </td>
       <td>{{ item.quantity * item.price | currency }}</td>
       <td>
-        <span class="flex justify-center">
+        <span
+          #closebutton
+          (click)="onRemoveFromCart(item)"
+          class="flex justify-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -68,7 +93,7 @@
       <td>
         <button
           routerLink="/home"
-          class="text-gray-600 md:bg-purple-600 md:text-gray-50 md:hover:bg-purple-700 px-4 p-1 rounded-xl whitespace-nowrap w-fit"
+          class="text-gray-600 md:bg-purple-600 md:text-gray-50 md:hover:bg-purple-700 py-1 px-3 rounded-xl whitespace-nowrap w-fit"
         >
           Continue shopping
         </button>
@@ -83,16 +108,109 @@
       </td>
       <td class="text-center flex flex-col justify-between items-center">
         <button
-          class="text-gray-600 md:bg-rose-600 md:text-gray-50 md:hover:bg-rose-700 px-5 p-0.5 rounded-xl whitespace-nowrap w-fit"
+          class="text-gray-600 md:bg-green-600 md:text-gray-50 md:hover:bg-rose-700 py-1 px-3 rounded-xl whitespace-nowrap w-fit m-2"
         >
-          Clear All
+          Checkout
         </button>
-        <button class="my-2">Checkout</button>
       </td>
     </div>
   </table>
 </div>
+
+<!-- Mobile Table -->
+<div class="md:hidden">
+  <div [hidden]="!cart.items.length" class="bg-white p-4 rounded-lg">
+    <div class="grid grid-cols-2 gap-4 mb-5">
+      <!-- Card Content-->
+      <ng-container
+        class="bg-gray-50 md:hover:bg-gray-100"
+        *ngFor="let item of dataSource"
+      >
+        <div
+          class="flex justify-around shadow-lg rounded-lg hover:scale-105 ease-in duration-300"
+        >
+          <div>
+            <img
+              class="w-[100px] my-5 rounded-lg"
+              src="{{ item.product }}"
+              alt=""
+            />
+          </div>
+          <div class="flex flex-col justify-around text-center">
+            <span class="truncate max-w-xs w-full font-semibold">{{
+              item.name
+            }}</span>
+            <div>
+              <span>{{ item.price | currency }}</span>
+              <div class="flex justify-between items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-4 h-4 mr-1"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                  />
+                </svg>
+                <span class="w-4 text-sm">{{ item.quantity }}</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-4 h-4 ml-1"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M4.5 15.75l7.5-7.5 7.5 7.5"
+                  />
+                </svg>
+              </div>
+            </div>
+            <span class="font-semibold">{{
+              item.quantity * item.price | currency
+            }}</span>
+          </div>
+          <button class="bg-rose-600 text-white rounded-full w-6 h-6 mt-3">
+            <span
+              #closebuttonmobile
+              (click)="onRemoveFromCart(item)"
+              class="flex justify-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-5 h-5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                />
+              </svg>
+            </span>
+          </button>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
 <div *ngIf="!cart.items.length">
   <p>Your cart is empty!</p>
-  <button class="border-2 rounded-lg p-2 mb-2">Start shopping</button>
+  <button
+    routerLink="/shop"
+    class="bg-gradient-to-r from-rose-600 to-pink-500 rounded-full mr-1 py-2 px-3 text-gray-50 flex flex-row hover:from-pink-600 hover:to-pink-600 text-sm whitespace-nowrap justify-center my-2 hover:scale-105 ease-in-out duration-200"
+  >
+    Start shopping
+  </button>
 </div>
