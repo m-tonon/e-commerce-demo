@@ -6,7 +6,14 @@
         <ng-container *ngFor="let column of displayedColumns">
           <th class="text-left text-gray-600 p-3">{{ column }}</th>
         </ng-container>
-        <th></th>
+        <th>
+          <button
+            (click)="onClearCart()"
+            class="text-gray-600 md:bg-rose-600 md:text-gray-50 md:hover:bg-rose-700 py-1 px-4 rounded-xl whitespace-nowrap w-fit font-normal"
+          >
+            Clear All
+          </button>
+        </th>
       </tr>
     </thead>
     <tbody
@@ -32,9 +39,13 @@
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            class="w-6 h-6 mr-5 md:hover:bg-purple-800 md:hover:text-white rounded-full"
+            class="w-5 h-5 mr-5 md:hover:bg-purple-800 md:hover:text-white rounded-full"
           >
-            <path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6" />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+            />
           </svg>
           <span>{{ item.quantity }}</span>
           <svg
@@ -43,19 +54,22 @@
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            class="w-6 h-6 ml-5 md:hover:bg-purple-800 md:hover:text-white rounded-full"
+            class="w-5 h-5 ml-5 md:hover:bg-purple-800 md:hover:text-white rounded-full"
           >
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
-              d="M12 6v12m6-6H6"
+              d="M4.5 15.75l7.5-7.5 7.5 7.5"
             />
           </svg>
         </div>
       </td>
       <td>{{ item.quantity * item.price | currency }}</td>
       <td>
-        <span class="flex justify-center">
+        <span
+          #closebutton
+          (click)="onRemoveFromCart(item)"
+          class="flex justify-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -77,7 +91,7 @@
       <td>
         <button
           routerLink="/home"
-          class="text-gray-600 md:bg-purple-600 md:text-gray-50 md:hover:bg-purple-700 px-4 p-1 rounded-xl whitespace-nowrap w-fit"
+          class="text-gray-600 md:bg-purple-600 md:text-gray-50 md:hover:bg-purple-700 py-1 px-3 rounded-xl whitespace-nowrap w-fit"
         >
           Continue shopping
         </button>
@@ -92,11 +106,10 @@
       </td>
       <td class="text-center flex flex-col justify-between items-center">
         <button
-          class="text-gray-600 md:bg-rose-600 md:text-gray-50 md:hover:bg-rose-700 px-5 p-0.5 rounded-xl whitespace-nowrap w-fit"
+          class="text-gray-600 md:bg-green-600 md:text-gray-50 md:hover:bg-rose-700 py-1 px-3 rounded-xl whitespace-nowrap w-fit m-2"
         >
-          Clear All
+          Checkout
         </button>
-        <button class="my-2">Checkout</button>
       </td>
     </div>
   </table>
@@ -104,7 +117,7 @@
 
 <!-- Mobile Table -->
 <div class="md:hidden">
-  <div class="bg-white p-4 rounded-lg">
+  <div [hidden]="!cart.items.length" class="bg-white p-4 rounded-lg">
     <div class="grid grid-cols-2 gap-4 mb-5">
       <!-- Card Content-->
       <ng-container
@@ -164,7 +177,10 @@
             }}</span>
           </div>
           <button class="bg-rose-600 text-white rounded-full w-6 h-6 mt-3">
-            <span class="flex justify-center">
+            <span
+              #closebuttonmobile
+              (click)="onRemoveFromCart(item)"
+              class="flex justify-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -184,29 +200,15 @@
         </div>
       </ng-container>
     </div>
-    <!-- Table Footer -->
-    <div class="flex justify-between">
-        <button
-          routerLink="/home"
-          class="bg-purple-700 text-gray-50 px-3 rounded-xl whitespace-nowrap w-fit"
-        >
-          Continue shopping
-        </button>
-        <div>
-          <span class="font-bold mr-10">
-            {{ getTotal(cart.items) | currency }}
-          </span>
-          <button
-            class="text-gray-50 bg-rose-700 px-3 rounded-xl whitespace-nowrap w-fit"
-          >
-            Checkout
-          </button>
-        </div>
-    </div>
   </div>
 </div>
 
 <div *ngIf="!cart.items.length">
   <p>Your cart is empty!</p>
-  <button class="border-2 rounded-lg p-2 mb-2">Start shopping</button>
+  <button
+    routerLink="/shop"
+    class="bg-gradient-to-r from-rose-600 to-pink-500 rounded-full mr-1 py-2 px-3 text-gray-50 flex flex-row hover:from-pink-600 hover:to-pink-600 text-sm whitespace-nowrap justify-center my-2 hover:scale-105 ease-in-out duration-200"
+  >
+    Start shopping
+  </button>
 </div>
