@@ -34,6 +34,7 @@
       <td class="items-left">
         <div class="flex justify-start">
           <svg
+            (click)="onRemoveQuantity(item)"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -49,6 +50,7 @@
           </svg>
           <span>{{ item.quantity }}</span>
           <svg
+            (click)="onAddQuantity(item)"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
