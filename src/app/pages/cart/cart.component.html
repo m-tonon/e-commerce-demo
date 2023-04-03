@@ -71,7 +71,8 @@
         <span
           #closebutton
           (click)="onRemoveFromCart(item)"
-          class="flex justify-center">
+          class="flex justify-center"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -108,7 +109,7 @@
       </td>
       <td class="text-center flex flex-col justify-between items-center">
         <button
-          class="text-gray-600 md:bg-green-600 md:text-gray-50 md:hover:bg-rose-700 py-1 px-3 rounded-xl whitespace-nowrap w-fit m-2"
+          class="text-gray-600 md:bg-green-600 md:text-gray-50 md:hover:bg-green-700 py-1 px-3 rounded-xl whitespace-nowrap w-fit m-2"
         >
           Checkout
         </button>
@@ -120,18 +121,18 @@
 <!-- Mobile Table -->
 <div class="md:hidden">
   <div [hidden]="!cart.items.length" class="bg-white p-4 rounded-lg">
-    <div class="grid grid-cols-2 gap-4 mb-5">
+    <div class="grid md:grid-cols-2 gap-4 mb-5">
       <!-- Card Content-->
       <ng-container
         class="bg-gray-50 md:hover:bg-gray-100"
         *ngFor="let item of dataSource"
       >
         <div
-          class="flex justify-around shadow-lg rounded-lg hover:scale-105 ease-in duration-300"
+          class="flex justify-around shadow-lg rounded-lg hover:scale-105 ease-in duration-300 min-w-[250px]"
         >
           <div>
             <img
-              class="w-[100px] my-5 rounded-lg"
+              class="w-[100px] my-5 rounded-lg min-w-[80px]"
               src="{{ item.product }}"
               alt=""
             />
@@ -182,7 +183,8 @@
             <span
               #closebuttonmobile
               (click)="onRemoveFromCart(item)"
-              class="flex justify-center">
+              class="flex justify-center"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -201,6 +203,25 @@
           </button>
         </div>
       </ng-container>
+    </div>
+    <!-- Table Footer -->
+    <div class="flex justify-between">
+      <button
+        routerLink="/shop"
+        class="bg-purple-700 text-gray-50 px-3 rounded-xl whitespace-nowrap w-fit"
+      >
+        Continue shopping
+      </button>
+      <div class="flex md:flex-col flex-row justify-between">
+        <span class="font-bold py-1 mx-4">
+          {{ getTotal(cart.items) | currency }}
+        </span>
+        <button
+          class="text-gray-50 bg-green-700 px-3 rounded-xl whitespace-nowrap w-fit py-1"
+        >
+          Checkout
+        </button>
+      </div>
     </div>
   </div>
 </div>
