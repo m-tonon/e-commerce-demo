@@ -14,6 +14,7 @@ import { CartComponent } from './pages/cart/cart.component';
 import { ProductBoxComponent } from './pages/shop/product-box/product-box.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { FiltersComponent } from './pages/shop/filters/filters.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     ShopComponent,
     CartComponent,
     ProductBoxComponent,
+    FiltersComponent,
   ],
   imports: [
     BrowserModule,
