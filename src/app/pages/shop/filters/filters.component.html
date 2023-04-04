@@ -1,4 +1,4 @@
-<!-- <div class="flex flex-col justify-center items-center ">
+<div class="flex flex-col justify-center items-center ">
   <button
     (click)="onOpenDropdown()"
     class="flex justify-between items-center bg-white border focus:outline-none shadow text-gray-600 rounded text-center w-full mt-4 hover:shadow-md"
@@ -24,24 +24,10 @@
   <div
     [hidden]="this.openDropdown"
     class="min-w-full w-max bg-white shadow-md mt-1 rounded">
-    <ul class="text-left border rounded" *ngFor="let category of categories">
-      <li class="px-4 py-1 hover:bg-gray-100 borber-b">{{ category }}</li>
+    <ul class="text-left rounded" *ngFor="let category of categories">
+      <li
+        (click)="onShowCategory(category)"
+        class="px-4 py-1 hover:bg-gray-100 ">{{ category }}</li>
     </ul>
-  </div>
-</div> -->
-
-<div class="min-w-full w-max bg-white shadow-md mt-1 rounded">
-  <div class="text-left border rounded w-full">
-    <select
-      class="w-full bg-white px-4 py-3 hover:bg-gray-100 borber-b">
-        <option class="bg-white text-md" value="" disabled selected>Categories</option>
-        <option
-          *ngFor="let category of categories"
-          class="bg-white text-md"
-          value="2"
-        >
-          {{ category }}
-        </option>
-    </select>
   </div>
 </div>

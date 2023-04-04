@@ -10,6 +10,7 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class ShopComponent {
   isNavBarOpen = false;
+  category: string | undefined;
 
   constructor (private cartService: CartService) {}
 
@@ -30,5 +31,11 @@ export class ShopComponent {
       id: product.id
     });
   }
+
+  onShowCategory(newCategory: string, openNavbar: boolean):void {
+    this.category = newCategory;
+    this.isNavBarOpen = openNavbar;
+  }
+
 
 }

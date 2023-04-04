@@ -42,7 +42,8 @@
         </span>
       </div>
       <div class="{{ isNavBarOpen ? '' : 'hidden' }}">
-        <app-filters></app-filters>
+        <app-filters
+          (showCategory)="onShowCategory($event, false)"></app-filters>
       </div>
     </div>
     <div
@@ -53,10 +54,11 @@
     ></div>
   </nav>
   <!-- Sidebar Ends -->
-
+  {{category}}
   <!-- Product Box Start -->
   <div class="overflow-none">
     <div class="grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10" >
+
       <app-product-box
       (addToCart)="onAddToCart($event)"
       ></app-product-box>
