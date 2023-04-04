@@ -27,7 +27,7 @@ export class ShopComponent implements OnInit, OnDestroy {
   }
 
   getProducts(): void {
-    this.productsSubs = this.storeService.getAllProducts(this.count, this.sort).
+    this.productsSubs = this.storeService.getAllProducts(this.count, this.sort, this.category).
       subscribe((_product) => {
         this.products = _product;
       })
@@ -53,6 +53,7 @@ export class ShopComponent implements OnInit, OnDestroy {
 
   onShowCategory(newCategory: string, openNavbar: boolean):void {
     this.category = newCategory;
+    this.getProducts();
     this.isNavBarOpen = openNavbar;
   }
 
