@@ -1,11 +1,11 @@
 <!-- Product Card -->
-<div class="shadow-lg rounded-lg" >
-  <a href="#">
+<div class="shadow-lg rounded-lg hover:scale-110 ease-out duration-500" >
+  <div class="md:w-[250px] h-[300px] flex justify-center">
     <img
       src="{{product?.image}}"
-      class="rounded-tl-lg rounded-tr-lg"
+      class="rounded-tl-lg rounded-tr-lg object-contain"
     />
-  </a>
+  </div>
   <div class="p-5 mx-auto">
     <h3 class="font-bold text-center text-lg truncate hover:whitespace-normal">
       <a href="#">{{product?.title}}</a>

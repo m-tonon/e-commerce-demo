@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from 'src/app/models/product.model';
 
 @Component({
@@ -9,15 +9,7 @@ import { Product } from 'src/app/models/product.model';
 })
 export class ProductBoxComponent {
   @Output() addToCart = new EventEmitter();
-
-  product: Product | undefined = {
-    id: 1,
-    title: 'Womens Skirt',
-    price: 99.99,
-    category: 'For Women',
-    description: 'Description',
-    image: '../../../../../assets/images/products/women/product4.jpg'
-  };
+  @Input() product: Product | undefined;
 
   constructor() {}
 

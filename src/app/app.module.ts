@@ -15,6 +15,7 @@ import { ProductBoxComponent } from './pages/shop/product-box/product-box.compon
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { FiltersComponent } from './pages/shop/filters/filters.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { FiltersComponent } from './pages/shop/filters/filters.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MatSnackBarModule
   ],
   providers: [],
