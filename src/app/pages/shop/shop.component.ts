@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Product } from 'src/app/models/product.model';
 import { CartService } from 'src/app/services/cart.service';
@@ -20,9 +21,12 @@ export class ShopComponent implements OnInit, OnDestroy {
 
   constructor (
     private cartService: CartService,
-    private storeService: StoreService) {}
+    private storeService: StoreService,
+    private route: ActivatedRoute
+    ) {}
 
   ngOnInit(): void {
+    this.category = this.route.snapshot.queryParams['collection'];
     this.getProducts();
   }
 

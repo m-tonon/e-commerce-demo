@@ -2,7 +2,9 @@
 <div class="my-20">
   <div class="flex flex-row justify-between my-5">
     <h2 class="text-3xl">Men's Collection</h2>
-    <a href="#" class="text-xl flex flex-row whitespace-nowrap p-1.5 rounded-xl hover:bg-purple-700 hover:text-white hover:scale-110 ease-in-out duration-300">
+    <button
+      (click)="toCollection('men\'s clothing')"
+      class="text-xl flex flex-row whitespace-nowrap p-2 rounded-xl hover:bg-purple-700 hover:text-white hover:scale-110 ease-in-out duration-300">
       View All
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -18,7 +20,7 @@
           d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
         />
       </svg>
-    </a>
+    </button>
   </div>
   <div class="grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
     <div
@@ -86,7 +88,9 @@
 <div class="my-20">
   <div class="flex flex-row justify-between my-5">
     <h2 class="text-3xl">Women's Collection</h2>
-    <a href="#" class="text-xl flex flex-row whitespace-nowrap p-1.5 rounded-xl hover:bg-purple-700 hover:text-white hover:scale-110 ease-in-out duration-300">
+    <button
+      (click)="toCollection('women\'s clothing')"
+      class="text-xl flex flex-row whitespace-nowrap p-2 rounded-xl hover:bg-purple-700 hover:text-white hover:scale-110 ease-in-out duration-300">
       View All
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +106,7 @@
           d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
         />
       </svg>
-    </a>
+    </button>
   </div>
   <div class="grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
     <div
