@@ -2,7 +2,9 @@
 <div class="my-20">
   <div class="flex flex-row justify-between my-5">
     <h2 class="text-3xl">Men's Collection</h2>
-    <a href="#" class="text-xl flex flex-row whitespace-nowrap p-1.5 rounded-xl hover:bg-purple-700 hover:text-white hover:scale-110 ease-in-out duration-300">
+    <button
+      (click)="toCollection('men\'s clothing')"
+      class="text-xl flex flex-row whitespace-nowrap p-2 rounded-xl hover:bg-purple-700 hover:text-white hover:scale-110 ease-in-out duration-300">
       View All
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -18,74 +20,26 @@
           d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
         />
       </svg>
-    </a>
+    </button>
   </div>
   <div class="grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-    <div class="shadow-lg rounded-lg hover:scale-105 ease-in-out duration-300">
-      <a href="#">
+    <div
+      *ngFor="let product of menProducts | slice:0:4"
+      class="shadow-lg rounded-lg hover:scale-105 ease-in-out duration-300">
+      <a class="flex justify-center" href="#">
         <img
-          src="../../../../../assets/images/products/men/product1.jpg"
-          class="rounded-tl-lg rounded-tr-lg"
+          src="{{product.image}}"
+          class="rounded-tl-lg rounded-tr-lg h-[300px]"
         />
       </a>
       <div class="p-5 mx-auto">
-        <h3><a href="#">Men's T-Shirt</a></h3>
-        <div class="flex flex-col xl:flex-row justify-between my-2">
-          <a
-            href="#"
-            class="bg-gradient-to-r from-red-600 to-pink-500 rounded-full mr-1 py-2 px-3 text-gray-50 flex flex-row hover:from-pink-600 hover:to-pink-600 text-sm whitespace-nowrap justify-center my-2"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-5 h-5 mr-1"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
-              />
-            </svg>
-            Add to Cart
-          </a>
-          <a
-            href="#"
-            class="bg-purple-600 rounded-full ml-1 py-2 px-3 text-gray-50 flex flex-row hover:bg-purple-700 text-sm whitespace-nowrap justify-center my-2"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-5 h-5 mr-1"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-              />
-            </svg>
-            View Details
-          </a>
+        <div class="flex justify-between">
+          <h3 class="truncate inline-block" >{{product.title}}</h3>
+          <p class="text-right text-lg ml-4">{{ product?.price | currency }}</p>
         </div>
-      </div>
-    </div>
-    <div class="shadow-lg rounded-lg hover:scale-105 ease-in-out duration-300">
-      <a href="#">
-        <img
-          src="../../../../../assets/images/products/men/product2.jpg"
-          class="rounded-tl-lg rounded-tr-lg"
-        />
-      </a>
-      <div class="p-5 mx-auto">
-        <h3><a href="#">Men's T-Shirt</a></h3>
         <div class="flex flex-col xl:flex-row justify-between my-2">
-          <a
-            href="#"
+          <button
+            (click)="onAddToCart(this.product)"
             class="bg-gradient-to-r from-red-600 to-pink-500 rounded-full mr-1 py-2 px-3 text-gray-50 flex flex-row hover:from-pink-600 hover:to-pink-600 text-sm whitespace-nowrap justify-center my-2"
           >
             <svg
@@ -103,113 +57,7 @@
               />
             </svg>
             Add to Cart
-          </a>
-          <a
-            href="#"
-            class="bg-purple-600 rounded-full ml-1 py-2 px-3 text-gray-50 flex flex-row hover:bg-purple-700 text-sm whitespace-nowrap justify-center my-2"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-5 h-5 mr-1"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-              />
-            </svg>
-            View Details
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="shadow-lg rounded-lg hover:scale-105 ease-in-out duration-300">
-      <a href="#">
-        <img
-          src="../../../../../assets/images/products/men/product3.jpg"
-          class="rounded-tl-lg rounded-tr-lg"
-        />
-      </a>
-      <div class="p-5 mx-auto">
-        <h3><a href="#">Men's T-Shirt</a></h3>
-        <div class="flex flex-col xl:flex-row justify-between my-2">
-          <a
-            href="#"
-            class="bg-gradient-to-r from-red-600 to-pink-500 rounded-full mr-1 py-2 px-3 text-gray-50 flex flex-row hover:from-pink-600 hover:to-pink-600 text-sm whitespace-nowrap justify-center my-2"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-5 h-5 mr-1"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
-              />
-            </svg>
-            Add to Cart
-          </a>
-          <a
-            href="#"
-            class="bg-purple-600 rounded-full ml-1 py-2 px-3 text-gray-50 flex flex-row hover:bg-purple-700 text-sm whitespace-nowrap justify-center my-2"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-5 h-5 mr-1"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-              />
-            </svg>
-            View Details
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="shadow-lg rounded-lg hover:scale-105 ease-in-out duration-300">
-      <a href="#">
-        <img
-          src="../../../../../assets/images/products/men/product4.jpg"
-          class="rounded-tl-lg rounded-tr-lg"
-        />
-      </a>
-      <div class="p-5 mx-auto">
-        <h3><a href="#">Men's T-Shirt</a></h3>
-        <div class="flex flex-col xl:flex-row justify-between my-2">
-          <a
-            href="#"
-            class="bg-gradient-to-r from-red-600 to-pink-500 rounded-full mr-1 py-2 px-3 text-gray-50 flex flex-row hover:from-pink-600 hover:to-pink-600 text-sm whitespace-nowrap justify-center my-2"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-5 h-5 mr-1"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
-              />
-            </svg>
-            Add to Cart
-          </a>
+          </button>
           <a
             href="#"
             class="bg-purple-600 rounded-full ml-1 py-2 px-3 text-gray-50 flex flex-row hover:bg-purple-700 text-sm whitespace-nowrap justify-center my-2"
@@ -240,7 +88,9 @@
 <div class="my-20">
   <div class="flex flex-row justify-between my-5">
     <h2 class="text-3xl">Women's Collection</h2>
-    <a href="#" class="text-xl flex flex-row whitespace-nowrap p-1.5 rounded-xl hover:bg-purple-700 hover:text-white hover:scale-110 ease-in-out duration-300">
+    <button
+      (click)="toCollection('women\'s clothing')"
+      class="text-xl flex flex-row whitespace-nowrap p-2 rounded-xl hover:bg-purple-700 hover:text-white hover:scale-110 ease-in-out duration-300">
       View All
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -256,74 +106,26 @@
           d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
         />
       </svg>
-    </a>
+    </button>
   </div>
   <div class="grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-    <div class="shadow-lg rounded-lg hover:scale-105 ease-in-out duration-300">
-      <a href="#">
+    <div
+      *ngFor="let product of womenProducts | slice:0:4"
+      class="shadow-lg rounded-lg hover:scale-105 ease-in-out duration-300">
+      <a class="flex justify-center" href="#">
         <img
-          src="../../../../../assets/images/products/women/product1.jpg"
-          class="rounded-tl-lg rounded-tr-lg"
+          src="{{product.image}}"
+          class="rounded-tl-lg rounded-tr-lg h-[300px]"
         />
       </a>
       <div class="p-5 mx-auto">
-        <h3><a href="#">Men's T-Shirt</a></h3>
-        <div class="flex flex-col xl:flex-row justify-between my-2">
-          <a
-            href="#"
-            class="bg-gradient-to-r from-red-600 to-pink-500 rounded-full mr-1 py-2 px-3 text-gray-50 flex flex-row hover:from-pink-600 hover:to-pink-600 text-sm whitespace-nowrap justify-center my-2"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-5 h-5 mr-1"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
-              />
-            </svg>
-            Add to Cart
-          </a>
-          <a
-            href="#"
-            class="bg-purple-600 rounded-full ml-1 py-2 px-3 text-gray-50 flex flex-row hover:bg-purple-700 text-sm whitespace-nowrap justify-center my-2"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-5 h-5 mr-1"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-              />
-            </svg>
-            View Details
-          </a>
+        <div class="flex justify-between">
+          <h3 class="truncate inline-block" >{{product.title}}</h3>
+          <p class="text-right text-lg ml-4">{{ product?.price | currency }}</p>
         </div>
-      </div>
-    </div>
-    <div class="shadow-lg rounded-lg hover:scale-105 ease-in-out duration-300">
-      <a href="#">
-        <img
-        src="../../../../../assets/images/products/women/product2.jpg"
-          class="rounded-tl-lg rounded-tr-lg"
-        />
-      </a>
-      <div class="p-5 mx-auto">
-        <h3><a href="#">Men's T-Shirt</a></h3>
         <div class="flex flex-col xl:flex-row justify-between my-2">
-          <a
-            href="#"
+          <button
+            (click)="onAddToCart(this.product)"
             class="bg-gradient-to-r from-red-600 to-pink-500 rounded-full mr-1 py-2 px-3 text-gray-50 flex flex-row hover:from-pink-600 hover:to-pink-600 text-sm whitespace-nowrap justify-center my-2"
           >
             <svg
@@ -341,113 +143,7 @@
               />
             </svg>
             Add to Cart
-          </a>
-          <a
-            href="#"
-            class="bg-purple-600 rounded-full ml-1 py-2 px-3 text-gray-50 flex flex-row hover:bg-purple-700 text-sm whitespace-nowrap justify-center my-2"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-5 h-5 mr-1"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-              />
-            </svg>
-            View Details
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="shadow-lg rounded-lg hover:scale-105 ease-in-out duration-300">
-      <a href="#">
-        <img
-        src="../../../../../assets/images/products/women/product3.jpg"
-          class="rounded-tl-lg rounded-tr-lg"
-        />
-      </a>
-      <div class="p-5 mx-auto">
-        <h3><a href="#">Men's T-Shirt</a></h3>
-        <div class="flex flex-col xl:flex-row justify-between my-2">
-          <a
-            href="#"
-            class="bg-gradient-to-r from-red-600 to-pink-500 rounded-full mr-1 py-2 px-3 text-gray-50 flex flex-row hover:from-pink-600 hover:to-pink-600 text-sm whitespace-nowrap justify-center my-2"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-5 h-5 mr-1"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
-              />
-            </svg>
-            Add to Cart
-          </a>
-          <a
-            href="#"
-            class="bg-purple-600 rounded-full ml-1 py-2 px-3 text-gray-50 flex flex-row hover:bg-purple-700 text-sm whitespace-nowrap justify-center my-2"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-5 h-5 mr-1"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-              />
-            </svg>
-            View Details
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="shadow-lg rounded-lg hover:scale-105 ease-in-out duration-300">
-      <a href="#">
-        <img
-        src="../../../../../assets/images/products/women/product4.jpg"
-          class="rounded-tl-lg rounded-tr-lg"
-        />
-      </a>
-      <div class="p-5 mx-auto">
-        <h3><a href="#">Men's T-Shirt</a></h3>
-        <div class="flex flex-col xl:flex-row justify-between my-2">
-          <a
-            href="#"
-            class="bg-gradient-to-r from-red-600 to-pink-500 rounded-full mr-1 py-2 px-3 text-gray-50 flex flex-row hover:from-pink-600 hover:to-pink-600 text-sm whitespace-nowrap justify-center my-2"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-5 h-5 mr-1"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
-              />
-            </svg>
-            Add to Cart
-          </a>
+          </button>
           <a
             href="#"
             class="bg-purple-600 rounded-full ml-1 py-2 px-3 text-gray-50 flex flex-row hover:bg-purple-700 text-sm whitespace-nowrap justify-center my-2"
