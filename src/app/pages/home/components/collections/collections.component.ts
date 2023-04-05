@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription, switchMap } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Product } from 'src/app/models/product.model';
+import { CartService } from 'src/app/services/cart.service';
 import { StoreService } from 'src/app/services/store.service';
 
 @Component({
@@ -16,10 +17,22 @@ export class CollectionsComponent implements OnInit, OnDestroy {
   menProductsSubs?: Subscription;
   womenProductsSubs?: Subscription;
 
-  constructor(private storeService: StoreService) {}
+  constructor(
+    private storeService: StoreService,
+    private cartService: CartService) {}
 
   ngOnInit(): void {
     this.getProducts();
+  }
+
+  onAddToCart(product: Product): void {
+    this.cartService.addToCart({
+      product: product.image,
+      name: product.title,
+      price: product.price,
+      quantity: 1,
+      id: product.id
+    });
   }
 
   getProducts(): void {
