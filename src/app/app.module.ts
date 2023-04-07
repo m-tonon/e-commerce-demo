@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { FiltersComponent } from './pages/shop/filters/filters.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductDetailComponent } from './shared/product-detail/product-detail.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
     CartComponent,
     ProductBoxComponent,
     FiltersComponent,
+    ProductDetailComponent,
   ],
   imports: [
     BrowserModule,

@@ -18,6 +18,8 @@ export class CollectionsComponent implements OnInit, OnDestroy {
   menProductsSubs?: Subscription;
   womenProductsSubs?: Subscription;
   collection?: string;
+  productDetail?: Product;
+  viewDetails: boolean = false;
 
   constructor(
     private storeService: StoreService,
@@ -36,6 +38,16 @@ export class CollectionsComponent implements OnInit, OnDestroy {
       quantity: 1,
       id: product.id
     });
+  }
+
+  onViewDetails(product: Product): void {
+    this.productDetail = product;
+    this.viewDetails = true;
+    console.log(this.viewDetails);
+  }
+
+  onCloseViewDetails(viewDetails: boolean): void {
+    this.viewDetails = viewDetails;
   }
 
   getProducts(): void {
