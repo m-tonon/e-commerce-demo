@@ -10,22 +10,22 @@
   id="modal"
   class="fixed top-[12%] left-[10%] right-[10%] h-[320px] bg-white rounded-xl p-4 flex flex-col justify-center shadow-xl"
 >
-  <div class="grid grid-flow-col grid-cols-3 xl:grid-cols-4 gap-3">
+  <div class="grid grid-flow-col md:grid-cols-3 xl:grid-cols-4 gap-3">
     <div class="m-0 flex justify-center">
-      <img class="rounded-xl h-[250px]" src="{{ product.image }}" alt="" />
+      <img class="rounded-xl h-[250px] hidden sm:block md:visible" src="{{ product.image }}" alt="" />
     </div>
-    <div class="col-span-2 xl:col-span-3 flex flex-col justify-between">
+    <div class="md:col-span-2 xl:col-span-3 flex flex-col justify-between">
       <div>
         <h1>{{ product.title || "Title" }}</h1>
         <p class="text-md">{{ product.description }}</p>
-        <p class="-left-10">
+        <p class="text-right text-lg p-3">
           <strong>{{ product.price | currency }}</strong>
         </p>
       </div>
       <div class="top-[100%] flex justify-end">
         <button
         (click)="onAddToCart(this.product)"
-        class="bg-gradient-to-r from-red-600 to-pink-500 rounded-full mr-1 py-2 px-3 text-gray-50 flex flex-row hover:from-pink-600 hover:to-pink-600 text-sm whitespace-nowrap justify-center my-2"
+        class="bg-gradient-to-r from-red-600 to-pink-500 rounded-full py-2 px-3 text-gray-50 flex flex-row hover:from-pink-600 hover:to-pink-600 text-sm whitespace-nowrap justify-center my-2"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +47,7 @@
     </div>
   </div>
   <!-- Close button -->
-  <button class="absolute top-3 right-0 mr-3 hover:">
+  <button class="absolute top-3 right-0 mr-3">
     <span (click)="onCloseDetail()" class="flex justify-center">
       <svg
         xmlns="http://www.w3.org/2000/svg"
