@@ -15,9 +15,12 @@ export class CartService {
 
   constructor(private _snackBar: MatSnackBar) {
     const cart = JSON.parse(localStorage.getItem(this.CART_KEY) || 'null');
-    if(cart) {
+    if(cart !== null) {
       this.cart.next(cart);
     }
+    setTimeout(() => {
+      localStorage.removeItem(this.CART_KEY);
+    }, 24 * 60 * 60 * 1000);
   }
 
   addToCart(item: CartItem): void {
