@@ -46,13 +46,8 @@ export class ShopComponent implements OnInit, OnDestroy {
   }
 
   onAddToCart(product: Product): void {
-    this.cartService.addToCart({
-      product: product.image,
-      name: product.title,
-      price: product.price,
-      quantity: 1,
-      id: product.id
-    });
+    const toCart = this.cartService.cartHelper(product);
+    this.cartService.addToCart(toCart);
   }
 
   onShowCategory(newCategory: string, openNavbar: boolean):void {

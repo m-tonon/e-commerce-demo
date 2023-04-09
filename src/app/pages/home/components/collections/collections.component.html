@@ -1,6 +1,6 @@
 <app-product-detail
-  (closeDetail)="onCloseViewDetails($event)"
   [hidden]="!viewDetails"
+  (closeDetail)="onCloseViewDetails($event)"
   [product]="productDetail"></app-product-detail>
 
 <!-- Men's Colection -->
@@ -30,12 +30,13 @@
   <div class="grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
     <div
       *ngFor="let product of menProducts | slice:0:4"
-      class="shadow-lg rounded-lg hover:scale-105 ease-in-out duration-300">
+      class="shadow-lg rounded-lg ">
+      <!-- hover:scale-105 ease-in-out duration-300 -->
       <a class="flex justify-center" href="#">
-        <img
-          src="{{product.image}}"
-          class="rounded-tl-lg rounded-tr-lg h-[300px]"
-        />
+          <img
+            src="{{product.image}}"
+            class="rounded-tl-lg rounded-tr-lg h-[300px]"
+          />
       </a>
       <div class="p-5 mx-auto">
         <div class="flex justify-between">

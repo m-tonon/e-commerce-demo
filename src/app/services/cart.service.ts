@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject } from 'rxjs';
 
 import { Cart, CartItem } from '../models/cart.model';
+import { Product } from '../models/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -72,5 +73,15 @@ export class CartService {
     }
 
     return filteredItems;
+  }
+
+  cartHelper(product: Product): CartItem {
+    return {
+      product: product.image,
+      name: product.title,
+      price: product.price,
+      quantity: 1,
+      id: product.id
+    };
   }
 }
