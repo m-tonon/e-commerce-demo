@@ -1,7 +1,8 @@
 <app-product-detail
   [hidden]="!viewDetails"
   (closeDetail)="onCloseViewDetails($event)"
-  [product]="productDetail"></app-product-detail>
+  [product]="productDetail"
+></app-product-detail>
 
 <!-- Men's Colection -->
 <div class="my-20">
@@ -9,7 +10,8 @@
     <h2 class="text-3xl">Men's Collection</h2>
     <button
       (click)="toCollection('men\'s clothing')"
-      class="text-xl flex flex-row whitespace-nowrap p-2 rounded-xl hover:bg-purple-700 hover:text-white hover:scale-110 ease-in-out duration-300">
+      class="text-xl flex flex-row whitespace-nowrap p-2 rounded-xl hover:bg-purple-700 hover:text-white hover:scale-110 ease-in-out duration-300"
+    >
       View All
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -27,20 +29,23 @@
       </svg>
     </button>
   </div>
-  <div class="grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+  <div
+    class="grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10"
+  >
     <div
-      *ngFor="let product of menProducts | slice:0:4"
-      class="shadow-lg rounded-lg ">
+      *ngFor="let product of menProducts | slice : 0 : 4"
+      class="shadow-lg rounded-lg"
+    >
       <!-- hover:scale-105 ease-in-out duration-300 -->
       <a class="flex justify-center" href="#">
-          <img
-            src="{{product.image}}"
-            class="rounded-tl-lg rounded-tr-lg h-[300px]"
-          />
+        <img
+          src="{{ product.image }}"
+          class="rounded-tl-lg rounded-tr-lg h-[300px]"
+        />
       </a>
       <div class="p-5 mx-auto">
         <div class="flex justify-between">
-          <h3 class="truncate inline-block" >{{product.title}}</h3>
+          <h3 class="truncate inline-block">{{ product.title }}</h3>
           <p class="text-right text-lg ml-4">{{ product?.price | currency }}</p>
         </div>
         <div class="flex flex-col xl:flex-row justify-between my-2">
@@ -96,7 +101,8 @@
     <h2 class="text-3xl">Women's Collection</h2>
     <button
       (click)="toCollection('women\'s clothing')"
-      class="text-xl flex flex-row whitespace-nowrap p-2 rounded-xl hover:bg-purple-700 hover:text-white hover:scale-110 ease-in-out duration-300">
+      class="text-xl flex flex-row whitespace-nowrap p-2 rounded-xl hover:bg-purple-700 hover:text-white hover:scale-110 ease-in-out duration-300"
+    >
       View All
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -114,19 +120,22 @@
       </svg>
     </button>
   </div>
-  <div class="grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+  <div
+    class="grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10"
+  >
     <div
-      *ngFor="let product of womenProducts | slice:0:4"
-      class="shadow-lg rounded-lg hover:scale-105 ease-in-out duration-300">
+      *ngFor="let product of womenProducts | slice : 0 : 4"
+      class="shadow-lg rounded-lg hover:scale-105 ease-in-out duration-300"
+    >
       <a class="flex justify-center" href="#">
         <img
-          src="{{product.image}}"
+          src="{{ product.image }}"
           class="rounded-tl-lg rounded-tr-lg h-[300px]"
         />
       </a>
       <div class="p-5 mx-auto">
         <div class="flex justify-between">
-          <h3 class="truncate inline-block" >{{product.title}}</h3>
+          <h3 class="truncate inline-block">{{ product.title }}</h3>
           <p class="text-right text-lg ml-4">{{ product?.price | currency }}</p>
         </div>
         <div class="flex flex-col xl:flex-row justify-between my-2">
@@ -150,8 +159,8 @@
             </svg>
             Add to Cart
           </button>
-          <a
-            href="#"
+          <button
+            (click)="onViewDetails(this.product)"
             class="bg-purple-600 rounded-full ml-1 py-2 px-3 text-gray-50 flex flex-row hover:bg-purple-700 text-sm whitespace-nowrap justify-center my-2"
           >
             <svg
@@ -169,7 +178,7 @@
               />
             </svg>
             View Details
-          </a>
+          </button>
         </div>
       </div>
     </div>

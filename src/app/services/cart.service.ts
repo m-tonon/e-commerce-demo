@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Cart, CartItem } from '../models/cart.model';
 import { Product } from '../models/product.model';
@@ -10,9 +10,15 @@ import { Product } from '../models/product.model';
 })
 
 export class CartService {
+  private readonly CART_KEY = 'cart';
   cart = new BehaviorSubject<Cart>({items: []});
 
-  constructor(private _snackBar: MatSnackBar) { }
+  constructor(private _snackBar: MatSnackBar) {
+    const cart = JSON.parse(localStorage.getItem(this.CART_KEY) || 'null');
+    if(cart) {
+      this.cart.next(cart);
+    }
+  }
 
   addToCart(item: CartItem): void {
     const items = [...this.cart.value.items];
@@ -26,6 +32,7 @@ export class CartService {
     }
 
     this.cart.next({ items });
+    this.saveCart();
     this._snackBar.open('1 item added to cart!', 'Ok', { duration:3000 });
   }
 
@@ -48,6 +55,7 @@ export class CartService {
     }
 
     this.cart.next({ items: filteredItems });
+    this.saveCart();
     this._snackBar.open('1 item removed from cart', 'Ok', { duration: 3000 });
   }
 
@@ -69,6 +77,7 @@ export class CartService {
 
     if (update) {
       this.cart.next({ items: filteredItems });
+      this.saveCart();
       this._snackBar.open('1 item removed from cart!', 'Ok', { duration: 3000 });
     }
 
@@ -83,5 +92,9 @@ export class CartService {
       quantity: 1,
       id: product.id
     };
+  }
+
+  private saveCart(): void {
+    localStorage.setItem(this.CART_KEY, JSON.stringify(this.cart.value));
   }
 }

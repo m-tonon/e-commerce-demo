@@ -17,20 +17,6 @@ export class CartComponent implements OnInit {
         quantity: 1,
         id: 1,
       },
-      {
-        product: '../../../../../../assets/images/products/men/product3.jpg',
-        name: 'snickers',
-        price: 150,
-        quantity: 2,
-        id: 2,
-      },
-      {
-        product: '../../../../../../assets/images/products/men/product2.jpg',
-        name: 'men pants',
-        price: 150,
-        quantity: 1,
-        id: 3,
-      },
     ],
   };
   dataSource: Array<CartItem> = [];
@@ -42,9 +28,15 @@ export class CartComponent implements OnInit {
     'Total'
   ];
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService) {
+
+  }
 
   ngOnInit(): void {
+    const cartFromStorage = localStorage.getItem('cart');
+    if (cartFromStorage) {
+      this.cart = JSON.parse(cartFromStorage);
+    }
     this.cartService.cart.subscribe((_cart: Cart) => {
       this.cart = _cart;
       this.dataSource = this.cart.items;
