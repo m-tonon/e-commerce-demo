@@ -17,6 +17,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { FiltersComponent } from './pages/shop/filters/filters.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductDetailComponent } from './shared/product-detail/product-detail.component';
+import { AuthComponent } from './pages/auth/auth.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { ProductDetailComponent } from './shared/product-detail/product-detail.c
     ProductBoxComponent,
     FiltersComponent,
     ProductDetailComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
