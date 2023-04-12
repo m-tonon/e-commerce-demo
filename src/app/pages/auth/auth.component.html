@@ -65,7 +65,7 @@
           <!-- Login Form -->
           <form
             [formGroup]="authForm"
-            (ngSubmit)="onSubmit()"
+            (ngSubmit)="onSubmit(authForm)"
             class="pt-6 space-y-6">
             <div class="flex flex-col items-end">
               <input
@@ -100,16 +100,16 @@
               </button>
             </div>
 
-
-
             <div>
               <button
                 type="submit"
-                class="block w-full px-6 py-3 rounded-xl bg-sky-500 hover:bg-sky-600 focus:bg-sky-700 active:bg-sky-800"
+                [disabled]="!authForm.valid"
+                class="block w-full px-6 py-3 rounded-xl bg-sky-500 hover:bg-sky-600 focus:bg-sky-700 active:bg-sky-800 disabled:bg-gray-500"
               >
                 <span class="text-lg text-white">{{ isLoginMode ? 'Login' : 'Sign Up'}}</span>
               </button>
               <button
+                type="button"
                 (click)="onSwitchMode()"
                 class="block w-max p-3 -ml-3">
                 <span class="text-blue-600">{{ isLoginMode ? 'Create new account' : 'Login to my account!'}}</span>

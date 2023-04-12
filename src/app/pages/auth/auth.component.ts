@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+
+import { AuthResponseData, AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -10,6 +13,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class AuthComponent implements OnInit {
   authForm!: FormGroup;
   isLoginMode = true;
+  error: string = 'null';
+
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
     this.authForm = new FormGroup({
@@ -23,12 +29,25 @@ export class AuthComponent implements OnInit {
     console.log(this.isLoginMode);
   }
 
-  onSubmit(): void {
-    if (!this.authForm.valid) {
+  onSubmit(form: FormGroup): void {
+    if (!form.valid) {
       return
     }
-    const email = this.authForm.value.email;
-    const password = this.authForm.value.password;
+    const email = form.value.email;
+    const password = form.value.password;
 
+    if(this.isLoginMode) {
+
+    } else {
+      this.authService.signup(email,password).subscribe(
+        resData => {
+          console.log(resData);
+        }, errorRes => {
+          console.log(errorRes);
+          this.error = 'An error occured!'
+        }
+      )
+
+    }
   }
 }
