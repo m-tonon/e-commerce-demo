@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from '../models/product.model';
 
-const STORE_BASE_URL = 'http://localhost:8000/products/'
+const STORE_BASE_URL = 'http://fakestoreapi.com'
 
 @Injectable({
   providedIn: 'root'
