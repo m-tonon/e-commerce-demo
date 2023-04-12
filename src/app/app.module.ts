@@ -18,6 +18,7 @@ import { FiltersComponent } from './pages/shop/filters/filters.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductDetailComponent } from './shared/product-detail/product-detail.component';
 import { AuthComponent } from './pages/auth/auth.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { AuthComponent } from './pages/auth/auth.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    ReactiveFormsModule,
     MatSnackBarModule
   ],
   providers: [],

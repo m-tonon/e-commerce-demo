@@ -70,6 +70,7 @@ export class CartService {
 
   clearCart():void {
     this.cart.next({ items: [] });
+    this.saveCart();
     this._snackBar.open('Cart is clear!', 'Ok', {duration: 3000});
   }
 
