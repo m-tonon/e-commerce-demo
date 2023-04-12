@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-auth',
@@ -6,6 +7,17 @@ import { Component } from '@angular/core';
   styles: [
   ]
 })
-export class AuthComponent {
+export class AuthComponent implements OnInit {
+  authForm!: FormGroup;
 
+  ngOnInit(): void {
+    this.authForm = new FormGroup({
+      'email': new FormControl(null),
+      'password': new FormControl(null)
+    })
+  }
+
+  onSubmit(): void {
+    console.log(this.authForm);
+  }
 }
