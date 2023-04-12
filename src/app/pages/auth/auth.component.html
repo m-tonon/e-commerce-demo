@@ -107,10 +107,12 @@
                 type="submit"
                 class="block w-full px-6 py-3 rounded-xl bg-sky-500 hover:bg-sky-600 focus:bg-sky-700 active:bg-sky-800"
               >
-                <span class="text-lg text-white">Login</span>
+                <span class="text-lg text-white">{{ isLoginMode ? 'Login' : 'Sign Up'}}</span>
               </button>
-              <button routerLink="#" class="block w-max p-3 -ml-3">
-                <span class="text-blue-600">Create new account</span>
+              <button
+                (click)="onSwitchMode()"
+                class="block w-max p-3 -ml-3">
+                <span class="text-blue-600">{{ isLoginMode ? 'Create new account' : 'Login to my account!'}}</span>
               </button>
             </div>
           </form>
