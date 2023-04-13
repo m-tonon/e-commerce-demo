@@ -52,16 +52,16 @@ export class AuthComponent implements OnInit {
       tap(resData => {
         console.log(resData);
         if (this.isLoginMode) {
-          this._snackBar.open('You have logged in successfully!','Ok', {duration: 5000});
+          this._snackBar.open('You have logged in successfully!','Ok', {duration: 3000});
           this.router.navigate(['/shop']);
         } else {
-          this._snackBar.open('Your account was created','Ok', {duration: 5000});
+          this._snackBar.open('Your account was created','Ok', {duration: 3000});
         }
       })
     ).subscribe({
       error: (errorMessage) => {
         console.log(errorMessage);
-        this._snackBar.open(errorMessage,'Ok', {duration: 5000});
+        this._snackBar.open(errorMessage,'Ok', {duration: 3000});
       }
     });
 

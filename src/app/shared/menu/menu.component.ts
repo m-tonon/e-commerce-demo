@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Cart, CartItem } from 'src/app/models/cart.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
 
 @Component({
@@ -12,6 +14,7 @@ export class MenuComponent {
   private _cart: Cart = { items: []};
   itemsQuantity = 0;
   openedCartMenu = false;
+  @Input() isLoggedIn?: boolean;
 
   @Input()
   get cart(): Cart {
@@ -26,7 +29,10 @@ export class MenuComponent {
     .reduce((prev, curr) => prev + curr, 0);
   }
 
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+    private authService: AuthService,
+    private _snackBar: MatSnackBar) {}
 
   getTotal(items: Array<CartItem>): number {
     return this.cartService.getTotal(items);
@@ -38,6 +44,11 @@ export class MenuComponent {
 
   onCartMenu(): void {
     this.openedCartMenu = !this.openedCartMenu;
+  }
+
+  onLogout(): void {
+    this.authService.logout();
+    this._snackBar.open('You have logged out successfully!','Ok', {duration:3000});
   }
 
   isMobile() {

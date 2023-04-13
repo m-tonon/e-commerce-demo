@@ -36,7 +36,10 @@
       </span>
     </div>
     <div class="mt-2 hidden md:flex">
-      <app-menu [cart]="cart"></app-menu>
+      <app-menu
+      [cart]="cart"
+      [isLoggedIn]="isAuthenticated"
+      ></app-menu>
     </div>
   </div>
 </div>
