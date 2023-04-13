@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 
 import { AuthResponseData, AuthService } from 'src/app/services/auth.service';
@@ -7,21 +8,23 @@ import { AuthResponseData, AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
-  styles: [
-  ]
+  styles: [],
 })
 export class AuthComponent implements OnInit {
   authForm!: FormGroup;
   isLoginMode = true;
   error: string = 'null';
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private _snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.authForm = new FormGroup({
-      'email': new FormControl(null, [Validators.required, Validators.email]),
-      'password': new FormControl(null, Validators.required)
-    })
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      password: new FormControl(null, Validators.required),
+    });
   }
 
   onSwitchMode(): void {
@@ -31,23 +34,24 @@ export class AuthComponent implements OnInit {
 
   onSubmit(form: FormGroup): void {
     if (!form.valid) {
-      return
+      return;
     }
     const email = form.value.email;
     const password = form.value.password;
 
-    if(this.isLoginMode) {
-
+    if (this.isLoginMode) {
     } else {
-      this.authService.signup(email,password).subscribe(
-        resData => {
+      this.authService.signup(email, password).subscribe({
+        next: (resData) => {
           console.log(resData);
-        }, errorRes => {
+        },
+        error: (errorRes) => {
           console.log(errorRes);
-          this.error = 'An error occured!'
-        }
-      )
-
+          ('An error occured!');
+        },
+      });
     }
+
+    form.reset();
   }
 }
