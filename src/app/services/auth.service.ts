@@ -29,4 +29,15 @@ export class AuthService {
       }
     );
   }
+
+  login(_email: string, _password:string) {
+    return this.http.post<AuthResponseData>(
+      'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + environment.firebaseAPIKey,
+      {
+        email: _email,
+        password: _password,
+        returnSecureToken: true
+      }
+    );
+  }
 }

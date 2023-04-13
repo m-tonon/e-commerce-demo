@@ -13,7 +13,7 @@ import { AuthResponseData, AuthService } from 'src/app/services/auth.service';
 export class AuthComponent implements OnInit {
   authForm!: FormGroup;
   isLoginMode = true;
-  error: string = 'null';
+  error?: string;
 
   constructor(
     private authService: AuthService,
@@ -29,7 +29,6 @@ export class AuthComponent implements OnInit {
 
   onSwitchMode(): void {
     this.isLoginMode = !this.isLoginMode;
-    console.log(this.isLoginMode);
   }
 
   onSubmit(form: FormGroup): void {
@@ -40,14 +39,25 @@ export class AuthComponent implements OnInit {
     const password = form.value.password;
 
     if (this.isLoginMode) {
+      this.authService.login(email,password).subscribe({
+        next:(resData) => {
+          console.log(resData);
+          this._snackBar.open('You have logged in successfully!','Ok', {duration: 5000});
+        },
+        error: (errorRes) => {
+          console.log(errorRes);
+          this._snackBar.open('An error occured. Check your credentials!','Ok', {duration: 5000});
+        }
+      })
     } else {
       this.authService.signup(email, password).subscribe({
         next: (resData) => {
           console.log(resData);
+          this._snackBar.open('Your account was created','Ok', {duration: 5000});
         },
         error: (errorRes) => {
           console.log(errorRes);
-          ('An error occured!');
+          this._snackBar.open('An error occured. Check your credentials!','Ok', {duration: 5000});
         },
       });
     }
