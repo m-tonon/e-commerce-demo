@@ -15,7 +15,6 @@ import { AuthResponseData, AuthService } from 'src/app/services/auth.service';
 export class AuthComponent implements OnInit {
   authForm!: FormGroup;
   isLoginMode = true;
-  error?: string;
 
   constructor(
     private authService: AuthService,
