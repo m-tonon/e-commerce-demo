@@ -19,10 +19,15 @@
   <div class="md:flex md:flex-row md:justify-between text-center">
     <div class="flex justify-between items-center">
       <div class="flex flex-row justify-center">
-        <div
+        <!-- <div
           class="bg-gradient-to-r from-purple-400 to-red-400 w-10 h-10 rounded-lg mr-2"
         ></div>
-        <h1 class="text-3xl text-gray-600">Logo</h1>
+        <h1 class="text-3xl text-gray-600">Logo</h1> -->
+        <a routerLink="/">
+          <img
+              class="w-10"
+              src="../../../assets/images/logo-header.png" alt="">
+        </a>
       </div>
       <span class="text-3xl cursor-pointer mx-2 md:hidden block">
         <svg (click)="this.openSideBar()" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -31,7 +36,10 @@
       </span>
     </div>
     <div class="mt-2 hidden md:flex">
-      <app-menu [cart]="cart"></app-menu>
+      <app-menu
+      [cart]="cart"
+      [isLoggedIn]="isAuthenticated"
+      ></app-menu>
     </div>
   </div>
 </div>
