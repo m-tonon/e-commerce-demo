@@ -1,4 +1,5 @@
 <app-product-detail
+  class="z-10 absolute"
   [hidden]="!viewDetails"
   (closeDetail)="onCloseViewDetails($event)"
   [product]="productDetail"
@@ -30,13 +31,12 @@
     </button>
   </div>
   <div
-    class="grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10"
+    class="grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 z-0"
   >
     <div
       *ngFor="let product of menProducts | slice : 0 : 4"
-      class="shadow-lg rounded-lg"
+      class="shadow-lg rounded-lg hover:scale-105 ease-in-out duration-300 "
     >
-      <!-- hover:scale-105 ease-in-out duration-300 -->
       <a class="flex justify-center" href="#">
         <img
           src="{{ product.image }}"
