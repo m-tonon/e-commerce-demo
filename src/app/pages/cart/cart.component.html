@@ -107,12 +107,18 @@
           {{ getTotal(cart.items) | currency }}
         </span>
       </td>
-      <td class="text-center flex flex-col justify-between items-center">
+      <td class="text-center flex-col justify-between items-center">
         <button
-          class="text-gray-600 md:bg-green-600 md:text-gray-50 md:hover:bg-green-700 py-1 px-3 rounded-xl whitespace-nowrap w-fit m-2"
+          class="{{ isAuthenticated ? 'flex' : 'hidden' }} disabled:bg-gray-500 text-gray-600 md:bg-green-600 md:text-gray-50 md:hover:bg-green-700  py-1 px-3 rounded-xl whitespace-nowrap w-fit m-2"
         >
           Checkout
         </button>
+        <span
+          routerLink="/auth"
+          class="{{ isAuthenticated ? 'hidden' : 'flex' }} py-1 px-3 rounded-xl whitespace-nowrap w-fit m-2 cursor-pointer hover:text-blue-600 text-blue-500"
+        >
+          Please, sign in to checkout!
+        </span>
       </td>
     </div>
   </table>
@@ -127,9 +133,7 @@
         class="bg-gray-50 md:hover:bg-gray-100"
         *ngFor="let item of dataSource"
       >
-        <div
-          class="flex justify-around shadow-lg rounded-lg min-w-[200px]"
-        >
+        <div class="flex justify-around shadow-lg rounded-lg min-w-[200px]">
           <div>
             <img
               class="w-[100px] my-5 rounded-lg min-w-[80px]"
@@ -138,7 +142,9 @@
             />
           </div>
           <div class="grid grid-cols-1 justify-around text-center">
-            <span class="inline-block truncate font-semibold">{{item.name}}</span>
+            <span class="inline-block truncate font-semibold">{{
+              item.name
+            }}</span>
             <div>
               <div class="flex justify-around">
                 <span class="py-3">{{ item.price | currency }}</span>

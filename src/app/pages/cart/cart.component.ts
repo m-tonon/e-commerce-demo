@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Cart, CartItem } from 'src/app/models/cart.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
 
 @Component({
@@ -7,7 +9,7 @@ import { CartService } from 'src/app/services/cart.service';
   templateUrl: './cart.component.html',
   styles: [],
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, OnDestroy {
   cart: Cart = {
     items: [
       {
@@ -27,8 +29,12 @@ export class CartComponent implements OnInit {
     'Quantity',
     'Total'
   ];
+  isAuthenticated = false;
+  private userSub?: Subscription;
 
-  constructor(private cartService: CartService) {
+  constructor(
+    private cartService: CartService,
+    private authService: AuthService) {
 
   }
 
@@ -41,6 +47,10 @@ export class CartComponent implements OnInit {
       this.cart = _cart;
       this.dataSource = this.cart.items;
     });
+
+    this.userSub = this.authService.user.subscribe(user => {
+      this.isAuthenticated = !!user;
+    })
   }
 
   getTotal(items: Array<CartItem>): number {
@@ -61,5 +71,9 @@ export class CartComponent implements OnInit {
 
   onRemoveQuantity(item: CartItem): void {
     this.cartService.removeQuantity(item);
+  }
+
+  ngOnDestroy(): void {
+    this.userSub?.unsubscribe();
   }
 }
