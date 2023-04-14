@@ -9,11 +9,17 @@ import { Product } from 'src/app/models/product.model';
 })
 export class ProductBoxComponent {
   @Output() addToCart = new EventEmitter();
+  @Output() productDetail = new EventEmitter();
   @Input() product: Product | undefined;
+  viewDetails = false;
 
   constructor() {}
 
   onAddToCart(): void {
     this.addToCart.emit(this.product);
+  }
+
+  onViewDetails(): void {
+    this.productDetail.emit(this.product);
   }
 }
