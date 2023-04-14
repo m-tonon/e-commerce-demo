@@ -1,3 +1,10 @@
+<app-product-detail
+  class="z-20 absolute"
+  [hidden]="!viewDetails"
+  (closeDetail)="onCloseViewDetails($event)"
+  [product]="productDetail"
+  ></app-product-detail>
+
 <div class="container flex {{ isNavBarOpen ? 'fixed' : '' }}">
   <!-- Sidebar Start -->
   <nav class="flex {{ isNavBarOpen ? 'fixed' : '' }} z-10">
@@ -64,6 +71,7 @@
     <div *ngFor="let product of products">
       <app-product-box
         [product]="product"
+        (productDetail)="onViewDetails($event)"
         (addToCart)="onAddToCart($event)"
       ></app-product-box>
     </div>

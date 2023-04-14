@@ -18,6 +18,8 @@ export class ShopComponent implements OnInit, OnDestroy {
   productsSubs: Subscription | undefined;
   sort = 'desc';
   count = '12';
+  productDetail?: Product;
+  viewDetails = false;
 
   constructor (
     private cartService: CartService,
@@ -48,6 +50,15 @@ export class ShopComponent implements OnInit, OnDestroy {
   onAddToCart(product: Product): void {
     const toCart = this.cartService.cartHelper(product);
     this.cartService.addToCart(toCart);
+  }
+
+  onViewDetails(product: Product): void {
+    this.productDetail = product;
+    this.viewDetails = true;
+  }
+
+  onCloseViewDetails(viewDetails: boolean) {
+    this.viewDetails = viewDetails;
   }
 
   onShowCategory(newCategory: string, openNavbar: boolean):void {
