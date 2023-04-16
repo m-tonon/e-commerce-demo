@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { loadStripe } from '@stripe/stripe-js';
 import { Subscription } from 'rxjs';
 import { Cart, CartItem } from 'src/app/models/cart.model';
 import { AuthService } from 'src/app/services/auth.service';
@@ -27,16 +29,16 @@ export class CartComponent implements OnInit, OnDestroy {
     'Name',
     'Price',
     'Quantity',
-    'Total'
+    'Total',
   ];
   isAuthenticated = false;
   private userSub?: Subscription;
 
   constructor(
     private cartService: CartService,
-    private authService: AuthService) {
-
-  }
+    private authService: AuthService,
+    private http: HttpClient
+  ) {}
 
   ngOnInit(): void {
     const cartFromStorage = localStorage.getItem('cart');
@@ -48,9 +50,9 @@ export class CartComponent implements OnInit, OnDestroy {
       this.dataSource = this.cart.items;
     });
 
-    this.userSub = this.authService.user.subscribe(user => {
+    this.userSub = this.authService.user.subscribe((user) => {
       this.isAuthenticated = !!user;
-    })
+    });
   }
 
   getTotal(items: Array<CartItem>): number {
@@ -71,6 +73,21 @@ export class CartComponent implements OnInit, OnDestroy {
 
   onRemoveQuantity(item: CartItem): void {
     this.cartService.removeQuantity(item);
+  }
+
+  onCheckout(): void {
+    this.http
+      .post('http://localhost:4242/checkout', {
+        items: this.cart.items,
+      })
+      .subscribe(async (res: any) => {
+        let stripe = await loadStripe(
+          'pk_test_51MIUKlLErrBUmWMGzDquI0VSjJyLa7tjh4LdK20lACE5FrBJ8lcJMF8sEiDPw4H0CTUQDIKLorEum0DbBXl9ie9s003ahngWcJ'
+        );
+        stripe?.redirectToCheckout({
+          sessionId: res.id,
+        });
+      });
   }
 
   ngOnDestroy(): void {

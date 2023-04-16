@@ -109,6 +109,7 @@
       </td>
       <td class="text-center flex-col justify-between items-center">
         <button
+          (click)="onCheckout()"
           class="{{ isAuthenticated ? 'flex' : 'hidden' }} disabled:bg-gray-500 text-gray-600 md:bg-green-600 md:text-gray-50 md:hover:bg-green-700  py-1 px-3 rounded-xl whitespace-nowrap w-fit m-2"
         >
           Checkout
