@@ -34,7 +34,7 @@
   <!-- Cart Button -->
   <li class="md:mx-4 my-2 md:my-0">
     <button
-      [hidden]="isMobile()"
+      [hidden]="isMobile() || openedProfileMenu"
       (click)="onCartMenu()"
       class="text-gray-600 md:bg-purple-600 md:text-gray-50 md:hover:bg-purple-700 px-3 p-1 rounded-full whitespace-nowrap md:hover:scale-110 ease-in duration-200 mb-"
     >
@@ -78,9 +78,9 @@
     <button
       [hidden]="isMobile()"
       (click)="onProfileMenu()"
-      class="text-gray-600 md:bg-purple-600 md:text-gray-50 md:hover:bg-purple-700 p-1 rounded-full whitespace-nowrap md:hover:scale-110 ease-in duration-200 mb-"
+      class="rounded-full whitespace-nowrap md:hover:scale-110 ease-in duration-200 w-12 h-12"
     >
-      <img class="w-16 object-cover" src="../../../assets/images/profile-pic.jpeg" alt="">
+      <img class="object-cover rounded-full w-full h-full" src="../../../assets/images/profile-pic.jpeg" alt="">
     </button>
     <span
       [hidden]="!itemsQuantity"
