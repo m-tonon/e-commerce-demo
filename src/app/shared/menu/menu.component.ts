@@ -14,6 +14,7 @@ export class MenuComponent {
   private _cart: Cart = { items: []};
   itemsQuantity = 0;
   openedCartMenu = false;
+  openedProfileMenu = false;
   @Input() isLoggedIn?: boolean;
 
   @Input()
@@ -44,6 +45,10 @@ export class MenuComponent {
 
   onCartMenu(): void {
     this.openedCartMenu = !this.openedCartMenu;
+  }
+
+  onProfileMenu(): void {
+    this.openedProfileMenu = !this.openedProfileMenu;
   }
 
   onLogout(): void {

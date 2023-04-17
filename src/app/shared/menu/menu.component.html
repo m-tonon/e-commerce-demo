@@ -16,11 +16,22 @@
     >
   </li>
   <li class="md:mx-4 my-2 md:my-0">
-    <button routerLink="/auth" *ngIf="!isLoggedIn" class="text-gray-600 hover:text-purple-600 p-4 lg:border-0"
-      >Sign in</button>
-    <button *ngIf="isLoggedIn" (click)="onLogout()" class="text-gray-600 hover:text-purple-600 p-4 lg:border-0"
-      >Logout</button>
+    <button
+      routerLink="/auth"
+      *ngIf="!isLoggedIn"
+      class="text-gray-600 hover:text-purple-600 p-4 lg:border-0"
+    >
+      Sign in
+    </button>
+    <button
+      *ngIf="isLoggedIn"
+      (click)="onLogout()"
+      class="text-gray-600 hover:text-purple-600 p-4 lg:border-0"
+    >
+      Logout
+    </button>
   </li>
+  <!-- Cart Button -->
   <li class="md:mx-4 my-2 md:my-0">
     <button
       [hidden]="isMobile()"
@@ -41,6 +52,35 @@
           d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
         />
       </svg>
+    </button>
+    <span
+      [hidden]="!itemsQuantity"
+      class="bg-white text-purple-800 absolute rounded-full px-2 h-fit right-1 bottom-5 shadow-lg font-semibold text-base"
+      >{{ itemsQuantity }}</span
+    >
+  </li>
+  <li [hidden]="!isMobile()">
+    <a
+      routerLink="cart"
+      (click)="onCartMenu()"
+      class="text-gray-600 hover:text-purple-600 p-4 lg:border-0"
+      >Cart
+      <span
+        [hidden]="!itemsQuantity"
+        class="bg-white text-purple-800 rounded-full px-2 h-fit right-1 bottom-5 shadow-lg font-semibold text-base"
+        >{{ itemsQuantity }}</span
+      >
+    </a>
+  </li>
+
+  <!-- Profile Button -->
+  <li class="md:mx-4 my-2 md:my-0">
+    <button
+      [hidden]="isMobile()"
+      (click)="onProfileMenu()"
+      class="text-gray-600 md:bg-purple-600 md:text-gray-50 md:hover:bg-purple-700 p-1 rounded-full whitespace-nowrap md:hover:scale-110 ease-in duration-200 mb-"
+    >
+      <img class="w-16 object-cover" src="../../../assets/images/profile-pic.jpeg" alt="">
     </button>
     <span
       [hidden]="!itemsQuantity"
@@ -117,6 +157,84 @@
         <button
           routerLink="cart"
           (click)="onCartMenu()"
+          class="bg-green-600 text-white rounded-full w-10 h-10"
+        >
+          <span class="flex justify-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+              />
+            </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<!-- Floating Profile Menu -->
+<ng-container *ngIf="openedProfileMenu">
+  <div
+    (click)="onProfileMenu()"
+    class="absolute bg-white right-0 top-[100%] w-[60vh] items-center px-5 py-10 rounded-2xl drop-shadow-xl z-10"
+  >
+    <div class="p-3 divide-y divide-solid">
+      <div class="pb-3">
+        <ul class="flex justify-between">
+          <li>
+            <span class="mr-16">{{ itemsQuantity }} items</span>
+          </li>
+          <li><a routerLink="cart">View Cart</a></li>
+        </ul>
+      </div>
+      <div *ngIf="cart.items.length" class="py-3">
+        <div
+          *ngFor="let item of cart.items"
+          class="flex justify-between font-light mb-2"
+        >
+          {{ item.quantity }} x {{ item.name }}
+          <span class="font-bold">{{ item.price | currency }}</span>
+        </div>
+      </div>
+      <div class="flex justify-between py-3 font-light">
+        Total:
+        <span class="font-bold">{{ getTotal(cart.items) | currency }}</span>
+      </div>
+      <!-- Icons -->
+      <div class="pt-3 flex justify-between">
+        <button
+          (click)="onClearCart()"
+          class="bg-rose-600 text-white rounded-full w-10 h-10"
+        >
+          <span class="flex justify-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+              />
+            </svg>
+          </span>
+        </button>
+        <button
+          routerLink="cart"
+          (click)="onProfileMenu()"
           class="bg-green-600 text-white rounded-full w-10 h-10"
         >
           <span class="flex justify-center">
