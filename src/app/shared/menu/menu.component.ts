@@ -15,7 +15,7 @@ export class MenuComponent {
   itemsQuantity = 0;
   openedCartMenu = false;
   openedProfileMenu = false;
-  @Input() isLoggedIn?: boolean;
+  @Input() isLoggedIn: boolean = false;
 
   @Input()
   get cart(): Cart {
