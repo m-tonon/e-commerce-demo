@@ -19,8 +19,9 @@ export class CartService {
       this.cart.next(cart);
     }
     setTimeout(() => {
-      localStorage.removeItem(this.CART_KEY);
-    }, 24 * 60 * 60 * 1000);
+      localStorage.removeItem('cart');
+      console.log('Cart item removed from local storage');
+    }, 24 * 60 * 60 * 3000);
   }
 
   addToCart(item: CartItem): void {
@@ -102,5 +103,5 @@ export class CartService {
     localStorage.setItem(this.CART_KEY, JSON.stringify(this.cart.value));
   }
 
-  
+
 }
