@@ -79,9 +79,11 @@
     <button
       [hidden]="isMobile() || !isLoggedIn"
       (click)="onProfileMenu()"
-      class="mr-2 rounded-full whitespace-nowrap md:hover:scale-110 ease-in duration-200 w-12 h-12"
+      class="mr-2 rounded-full whitespace-nowrap md:hover:scale-110 ease-in duration-200 w-10 h-10"
     >
-      <img class="object-cover rounded-full w-full h-full" src="../../../assets/images/profile-pic.jpeg" alt="">
+      <img
+        class="object-cover rounded-full w-full h-full"
+        src="../../../assets/images/profile.avif" alt="">
     </button>
   </li>
   <li [hidden]="!isMobile()">
