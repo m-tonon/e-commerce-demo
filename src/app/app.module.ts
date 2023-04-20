@@ -11,8 +11,8 @@ import {AngularFireAuthModule} from '@angular/fire/compat/auth';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
-import { UserEffects } from './effects/user.effects';
-import { userReducer } from './reducers/user.reducer';
+// import { UserEffects } from './effects/user.effects';
+// import { userReducer } from './reducers/user.reducer';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,6 +28,7 @@ import { ProductBoxComponent } from './pages/shop/product-box/product-box.compon
 import { FiltersComponent } from './pages/shop/filters/filters.component';
 import { ProductDetailComponent } from './shared/product-detail/product-detail.component';
 import { AuthComponent } from './pages/auth/auth.component';
+import { User } from './models/user.model';
 
 
 @NgModule({
@@ -53,13 +54,13 @@ import { AuthComponent } from './pages/auth/auth.component';
     HttpClientModule,
     ReactiveFormsModule,
     MatSnackBarModule,
-    AngularFireModule.initializeApp(firebaseConfig),
+    // AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     EffectsModule.forRoot([
-      UserEffects
+      // UserEffects
     ]),
     StoreModule.forRoot({
-      user:
+      // user: User
     })
   ],
   providers: [],
