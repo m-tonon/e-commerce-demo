@@ -1,5 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { HttpClientModule } from '@angular/common/http';
+
+import {AngularFireModule} from '@angular/fire/compat';
+import {AngularFireAuthModule} from '@angular/fire/compat/auth';
+
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+
+import { UserEffects } from './effects/user.effects';
+import { userReducer } from './reducers/user.reducer';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,13 +25,9 @@ import { MenuComponent } from './shared/menu/menu.component';
 import { ShopComponent } from './pages/shop/shop.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { ProductBoxComponent } from './pages/shop/product-box/product-box.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { FiltersComponent } from './pages/shop/filters/filters.component';
-import { HttpClientModule } from '@angular/common/http';
 import { ProductDetailComponent } from './shared/product-detail/product-detail.component';
 import { AuthComponent } from './pages/auth/auth.component';
-import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -43,7 +52,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
+    EffectsModule.forRoot([
+      UserEffects
+    ]),
+    StoreModule.forRoot({
+      user:
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
