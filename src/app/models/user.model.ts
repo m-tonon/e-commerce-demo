@@ -7,7 +7,7 @@ export interface IUser {
 
 export class FireUser {
   constructor (
-    public uid: string,
+    public uid: string | null,
     public displayName: string,
   ) {}
 }
