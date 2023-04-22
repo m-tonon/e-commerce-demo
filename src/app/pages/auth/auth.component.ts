@@ -5,7 +5,8 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { AuthResponseData, AuthService } from 'src/app/services/auth.service';
+import { GoogleAuthProvider } from 'firebase/auth';
+import { AuthResponseData, AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -17,7 +18,7 @@ export class AuthComponent implements OnInit {
   isLoginMode = true;
 
   constructor(
-    private authService: AuthService,
+    public authService: AuthService,
     private _snackBar: MatSnackBar,
     private router: Router
   ) {}
@@ -27,6 +28,10 @@ export class AuthComponent implements OnInit {
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, Validators.required),
     });
+  }
+
+  onGoogleAuth() {
+    return this.authService.loginWithGoogle(new GoogleAuthProvider());
   }
 
   onSwitchMode(): void {
