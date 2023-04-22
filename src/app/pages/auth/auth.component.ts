@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { AuthResponseData, AuthService } from 'src/app/services/auth.service';
+import { AuthResponseData, AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-auth',
