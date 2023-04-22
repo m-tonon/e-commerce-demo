@@ -6,6 +6,9 @@ import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
 import { User } from '../models/user.model';
 import { Router } from '@angular/router';
 
+import { AngularFireAuth } from '@angular/fire/compat/auth'
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 export interface AuthResponseData {
   idToken: string;
   email: string;
@@ -24,7 +27,22 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private router: Router) {}
+    private router: Router,
+    private afAuth: AngularFireAuth,
+    private _snackBar: MatSnackBar) {}
+
+  loginWithGoogle(provider: any) {
+    return this.afAuth
+      .signInWithPopup(provider)
+      .then((result) => {
+        console.log(result)
+        this._snackBar.open('You have logged in successfully!','Ok', {duration: 3000});
+        this.router.navigate(['/shop']);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   signup(_email: string, _password: string) {
     return this.http
