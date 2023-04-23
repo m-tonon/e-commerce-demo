@@ -34,8 +34,24 @@ export class AuthService {
   loginWithGoogle(provider: any) {
     return this.afAuth
       .signInWithPopup(provider)
-      .then((result) => {
-        console.log(result)
+      .then((res) => {
+        const googleUser = {
+          email: res.user?.email,
+          uid: res.user?.uid,
+          token: res.user?.refreshToken,
+        }
+
+        if (googleUser.email && googleUser.uid && googleUser.token) {
+          this.handleAuthentication (
+            googleUser.email,
+            googleUser.uid,
+            googleUser.token,
+            3600
+          )
+        } else {
+          console.error('Some properties of user are null or undefined.');
+        }
+
         this._snackBar.open('You have logged in successfully!','Ok', {duration: 3000});
         this.router.navigate(['/shop']);
       })
