@@ -39,19 +39,22 @@ export class AuthService {
           email: res.user?.email,
           uid: res.user?.uid,
           token: res.user?.refreshToken,
+          profileImage: res.user?.photoURL
         }
 
-        if (googleUser.email && googleUser.uid && googleUser.token) {
+        if (googleUser.email && googleUser.uid && googleUser.token && googleUser.profileImage) {
           this.handleAuthentication (
             googleUser.email,
             googleUser.uid,
             googleUser.token,
-            3600
+            3600,
+            googleUser.profileImage
           )
         } else {
           console.error('Some properties of user are null or undefined.');
         }
 
+        console.log(this.user);
         this._snackBar.open('You have logged in successfully!','Ok', {duration: 3000});
         this.router.navigate(['/shop']);
       })
@@ -111,10 +114,11 @@ export class AuthService {
     email: string,
     userId: string,
     token: string,
-    expiresIn: number
+    expiresIn: number,
+    profileImage?: string
   ) {
     const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
-    const user = new User(email, userId, token, expirationDate);
+    const user = new User(email, userId, token, expirationDate, profileImage);
     this.user.next(user);
 
     this.autoLogout(expiresIn * 1000);
@@ -177,6 +181,7 @@ export class AuthService {
   logout(): void {
     this.user.next(null);
     this.router.navigate(['/auth']);
+    localStorage.removeItem('userData');
 
     if(this.tokenExpirationTimer) {
       clearTimeout(this.tokenExpirationTimer);

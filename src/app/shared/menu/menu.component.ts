@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Cart, CartItem } from 'src/app/models/cart.model';
 import { AuthService } from 'src/app/auth/auth.service';
 import { CartService } from 'src/app/services/cart.service';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-menu',
@@ -10,11 +11,12 @@ import { CartService } from 'src/app/services/cart.service';
   styles: [
   ]
 })
-export class MenuComponent {
+export class MenuComponent implements OnInit {
   private _cart: Cart = { items: []};
   itemsQuantity = 0;
   openedCartMenu = false;
   openedProfileMenu = false;
+  userData?: User;
   @Input() isLoggedIn: boolean = false;
 
   @Input()
@@ -34,6 +36,14 @@ export class MenuComponent {
     private cartService: CartService,
     private authService: AuthService,
     private _snackBar: MatSnackBar) {}
+
+  ngOnInit(): void {
+    const userData = localStorage.getItem('userData');
+
+    if (userData) {
+      this.userData = JSON.parse(userData);
+    }
+  }
 
   getTotal(items: Array<CartItem>): number {
     return this.cartService.getTotal(items);
