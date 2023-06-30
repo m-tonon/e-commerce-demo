@@ -1,6 +1,17 @@
 # Angular E-commerce Website
+<b>Tools:</b> Angular, TypeScript, Firebase & Tailwind 
+<br><br>
+<a href="https://angular.io/"><img width="40px" src="https://www.svgrepo.com/show/303230/angular-icon-logo.svg" /></a>
+<a href="https://www.typescriptlang.org/"><img width="40px" src="https://mtonon-portfolio.vercel.app/assets/svg/typescript.svg" /></a>
+<a href="https://rxjs.dev/"><img width="40px" src="https://rxjs.dev/generated/images/marketing/home/Rx_Logo-512-512.png" /></a>
+<a href="https://firebase.google.com/"><img width="40px" style="padding-right:10px;" src="https://mtonon-portfolio.vercel.app/assets/svg/firebase.svg" /></a>
+<a href="https://fakestoreapi.com/"><img width="40px" style="" src="https://fakestoreapi.com/icons/logo.png" /></a>
+<a href="https://tailwindcss.com/"><img width="40px" style="" src="https://mtonon-portfolio.vercel.app/assets/svg/tailwind.svg" /></a>
+<a href="https://stripe.com/"><img width="40px" style="" src="https://www.cairnskangarooms.com/wp-content/uploads/2018/07/Stripe-Payment-Logo.png" /></a>
 
-### Introducing an outstanding e-commerce application that encapsulates a plethora of powerful features, carefully crafted to elevate your online shopping experience. Among the key highlights are:
+This demo e-commerce app offers a comprehensive cart system and intuitive shopping that leverages RxJs statement handling, Firebase authentication for secure login, and a visually stunning UI powered by Tailwind. With optimal performance, smooth communication, and responsive design, it provides an enhanced user experience. Advanced secure payments enhance the user experience using Stripe Payment API.
+
+## Among the key highlights are:
 
 - Comprehensive cart management system that allows you to easily add, remove, and modify items in your cart.<br>
 - Intuitive shopping page that offers seamless browsing, filtering, and sorting capabilities for effortless product discovery.<br>
@@ -13,8 +24,6 @@
 - Smooth observables handling that ensures real-time data synchronization and easy data manipulation.<br>
 - Cutting-edge user authorization with Google Firebase, a reliable and secure authentication platform that guarantees maximum data privacy and security.<br>
 - Streamlined checkout process powered by Stripe Payment API Service, a leading payment gateway that ensures fast, secure, and reliable payment processing.<br>
-
-### This impressive e-commerce application is a perfect showcase of our expertise in web development and our commitment to delivering exceptional solutions that exceed our clients' expectations. Trust us to bring your online business to the next level.
 
 ## Screen Shots
 
